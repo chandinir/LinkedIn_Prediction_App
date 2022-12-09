@@ -115,15 +115,17 @@ age = st.slider(label="How old is this person?",
          max_value=98,
           value=25)
 
+
 person = [income, educ, parent, married, female, age]
 
-final_prediction = lr.predict([person])
-if final_prediction == 1:
-    final_prediction1 = "This person is a LinkedIn User"
+
+if st.button('Predict'):
+    final_prediction = lr.predict([person])
+    if final_prediction == 1:
+        final_prediction1 = "This person is a LinkedIn User"
+    else: 
+        final_prediction1 = "This person is not a LinkedIn User"
+    st.write(f"# {final_prediction1}")
 else: 
-    final_prediction1 = "This person is not a LinkedIn User"
-
-
-st.write(f"# {final_prediction1}")
-
+    pass
 
