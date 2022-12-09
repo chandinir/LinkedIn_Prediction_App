@@ -42,7 +42,7 @@ st.markdown("# Predicting LinkedIn Users with Machine Learning ")
 
 st.markdown("#### By: Chandini Ramesh ")
 
-st.markdown("# Details of Potential LinkedIn User ")
+st.markdown("### Enter the Details of the Potential LinkedIn User: ")
 
 income = st.selectbox(label="What income level does this person fall under? (in USD)",
 options=("Less than $10k", " $10k-$20k", " $20k-$30k", " $30k-$40k", " $40k-$50k", " $50k-$75k", " $75k-$100k", " $100k-$150k", "More than $150K"))
@@ -102,7 +102,7 @@ if married == "Yes":
 else:
     married = 0
 
-female = st.selectbox(label="Does this identify as male or female?",
+female = st.selectbox(label="Does this person identify as male or female?",
 options=("Female", "Male"))
 
 if female == "Female":
@@ -121,11 +121,13 @@ person = [income, educ, parent, married, female, age]
 
 if st.button('Predict'):
     final_prediction = lr.predict([person])
+    probability = lr.predict_proba([person])[:,1].round(2)
     if final_prediction == 1:
-        final_prediction1 = "This person is a LinkedIn User"
+        final_prediction1 = "Yes, this person is most likely a LinkedIn User"
     else: 
-        final_prediction1 = "This person is not a LinkedIn User"
-    st.write(f"# {final_prediction1}")
+        final_prediction1 = "No, this person is most likely not a LinkedIn User"
+    st.write(f"### {final_prediction1}")
+    st.write(f"### Probability of being a LinkedIn User: {probability}")
 else: 
     pass
 
